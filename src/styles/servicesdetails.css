@@ -1,0 +1,32 @@
+.product-detail-wrapper{
+    background: #52B58812;
+    max-width: 70%;
+    border: 1px solid red;
+    margin: auto;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+.service-detail-name{
+    text-align: center;
+    margin: 3rem 0 3rem;
+    color: #000;
+    font-weight: 900;
+}
+
+.service-detail-img{
+    width: 100%;
+    margin: auto;
+    border: 1px solid black;
+}
+
+.desc-get{
+    margin: 2rem 0 2rem;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+

@@ -53,18 +53,39 @@ a{
 }
 
 
-ul{
+
+@media screen and (max-width: 700px) { 
+#hidephoneMenubar{
+    display: none;
+    }
+
+#phoneMenubar{
     position: absolute;
     top: 10%;
     right: 0%;
-    border: 1px solid red;
-    width: 70%;
+    border: 1px solid transparent;
+    width: 100%;
     height: 50vh;
-    background-color: #ffe4ca;
+    background-color: #ffff;
+    box-shadow: 5px 5px 0 #dcdcdc;
+    animation: slide 0.7s ease-in-out 0s;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 @keyframes slide {
     0%{
-        background-color: #808080;
+        transform: translate(-5em);
     }
+
+    100%{
+        transform: translate(0,0);
+    }
+}   
+
+.menubar{
+    display: inline-block;
+}
 }

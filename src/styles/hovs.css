@@ -1,0 +1,99 @@
+main{
+    background: #52B58812;
+    font-family: "poppins", sans-serif;
+    padding: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hovs-desc>h1{
+    font-size: 75px ;
+    line-height: 1em;
+    letter-spacing: 0.5rem;
+}
+
+.hovs-desc{
+    border: 1px solid transparent;
+    width: 53.158%;
+}
+
+.hovs-desc>p{
+    margin-top: 1em;
+    font-family: "montserrat", sans-serif;
+    color: #212123;
+    font-size: 20px;
+    font-style: inherit;
+    font-weight: inherit;
+    vertical-align: baseline;
+}
+
+img{
+    height: auto;
+    max-width: 100%;
+}
+
+a>button{
+    margin-top: 2em;
+    background-color: #14985c;
+    border: 1px solid #14985C;
+    color: #ffffff;
+    padding: 12px 24px;
+}
+
+.hovs{
+    /* position: absolute; */
+    border: 1px solid transparent;
+    margin: 7rem;
+    width: 20%;
+    height: 50%;
+    border-radius: 6px 6px 6px 6px;
+    animation: houseSlide 5s infinite ease-in-out;
+}
+
+@keyframes houseSlide {
+    0% {
+         transform: translate(-50%);
+     }
+     25%{
+        transform: translate(50%);
+     }
+
+     75%{
+        transform: translate(-50%);
+     }
+
+  100%{ transform: translate(50%);
+}
+
+}
+
+
+@media screen and (max-width: 700px) {
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+    }
+    .hovs-desc{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }  
+    .hovs-desc>h1, .hovs-desc>p{
+        text-align: center;
+        font-weight: 100;
+    }
+
+    .hovs-desc>h1{
+        font-size: 10vmin;
+    }
+    .hovs{
+        width: 100%;
+        animation: none;
+        margin: auto;
+    }
+    a>button{
+        margin-bottom: 3rem;
+    }
+}
