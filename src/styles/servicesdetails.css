@@ -5,6 +5,13 @@
     margin: auto;
 }
 
+#content-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+}
+
 img{
     max-width: 100%;
     height: auto;

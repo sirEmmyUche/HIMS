@@ -10,24 +10,16 @@ function Nav() {
   }
 
   return (
-    <nav>
+    <nav className="home-nav">
        <div className='logo'>
           <img src="/images/HIMS-logo.jfif" alt='logo'/> 
           <div>HIMS</div> 
       </div>
       <ul id={toggleMenu? "hidephoneMenubar" :"phoneMenubar"}>
-        <li>
-            Home
-        </li>
-        <li>
-          Service
-        </li>
-        <li>
-          About
-        </li>
-        <Link to={'/Login'}>
-            <li>Login</li>
-        </Link>
+        <Link to={"/"}> <li>Home</li> </Link>
+         <Link to={"/Services"}><li>Services</li></Link>
+        <Link><li>About</li></Link>
+        <Link to={'/Login'}><li>Login</li> </Link>
       </ul>
       <div className="menubar"><img 
       src="/images/icon-menu.svg" 

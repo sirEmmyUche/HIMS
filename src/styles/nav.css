@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-nav{
+.home-nav{
     height: 10vh;
     border: 1px solid transparent;
     box-shadow: 5px 5px 0 #808080;
@@ -33,11 +33,11 @@ nav{
     height: auto;
 }
 
-ul{
+.home-nav ul{
     display: flex;
 }
 
-ul li{
+.home-nav ul li{
     list-style: none;
     padding-right: 2em;
     color: #212123;

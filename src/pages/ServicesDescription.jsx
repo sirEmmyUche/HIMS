@@ -17,10 +17,10 @@ function ServicesDescription(){
 
     return(
         <section className="product-detail-wrapper">
-           {serviceDetails?(<div>
+           {serviceDetails?(<div id="content-wrapper">
             <h2 className="service-detail-name">{serviceDetails.name}</h2>
             <div className="service-detail-img">
-                <img src={serviceDetails.imgUrl} alt="houseImage"/>
+                <img src={`../${serviceDetails.imgUrl}`} alt="houseImage"/>
             </div>
             <div className="desc-get">
                 <h3>Description</h3>
