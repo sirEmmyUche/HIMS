@@ -1,19 +1,27 @@
 import { useContext, useState } from "react"
 import {Link} from "react-router-dom"
-import "../styles/login.css"
+import "../styles/signup.css"
 
 
 
-function Login() {
+function Signup() {
 
   const handleSubmitForm = (event)=>{
     event.preventDefault();
   }
   return (
     <div id="login-wrapper">
-        <div className="form-wrapper">
-          <h3>Sign In</h3>
+        <div className="signup-form-wrapper">
+          <h3>Create Account</h3>
           <form className="form-data" onSubmit={handleSubmitForm}>
+          <label>
+              First Name:<br/>
+              <input type="text"/>
+            </label>
+            <label>
+              Last Name:<br/>
+              <input type="text"/>
+            </label>
             <label>
               E-Mail:<br/>
               <input type="email"/>
@@ -27,10 +35,10 @@ function Login() {
           <div className="sigin-with-google-and-create-account-wrapper">
             <div className="singin-with-google-wrapper">
               <div className="google-icon-box"><img src="/images/google-icon.jfif"/></div>
-              <p>Sign In with Google</p>
+              <p>Sign up with Google</p>
               </div>
             <div className="create-an-account">
-             <Link to={"/Signup"}>Create an Account</Link>
+             <Link to={"/Login"}>Have an account? Sign in</Link>
               </div>
           </div>
         </div>
@@ -39,4 +47,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Signup

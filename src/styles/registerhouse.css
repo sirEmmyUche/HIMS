@@ -1,0 +1,41 @@
+
+#register-house{
+    width: calc(100vw - 15vw);
+    height:100vh;
+    background-image: url("/images/james-wheeler-1.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    margin-left: auto;
+}
+
+#register-house>h1{
+    color: #fff;
+}
+
+#register-form-data{
+    margin-top: 2rem;
+    padding: 20px;
+    max-width: 75%;
+    width: 100%;
+    border: 1px solid transparent;
+    background-color: #f2f2f2;
+    border-radius: 6px 6px 6px 6px;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#register-form-data input[type=file]{
+    background-color: #fff;
+}
+
+#register-form-data input[type=submit]{
+    -webkit-padding:4px 15px ;
+    padding: 4px 15px;
+}

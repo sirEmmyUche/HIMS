@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import { useState, useEffect } from "react"
 import '../styles/servicesdetails.css'
 
@@ -23,10 +23,10 @@ function ServicesDescription(){
                 <img src={`../${serviceDetails.imgUrl}`} alt="houseImage"/>
             </div>
             <div className="desc-get">
+                <Link to={"/Login"}><button className="get-started">Get started</button></Link>
                 <h3>Description</h3>
-                <button>Get started</button>
             </div>
-            <p>{serviceDetails.full_description}</p>
+            <p className="service-description">{serviceDetails.full_description}</p>
            </div>
            ):<h4>Loading----</h4>}
         </section>
