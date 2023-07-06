@@ -10,7 +10,7 @@ const handleSubmit = (event)=>{
     return(
         <div id="register-house">
             <h1>Register A House</h1>
-            <form id="register-form-data"  onSubmit={handleSubmit}>
+            <form id="register-form-data" onSubmit={handleSubmit} encType="multipart/form-data">
 
             <label className="label-css">Name of Owner:<br/>
                 <input type="text"

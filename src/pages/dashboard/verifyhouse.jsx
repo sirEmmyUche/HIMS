@@ -18,17 +18,15 @@ function VerifyHouse(){
         })
     }
 
-
     const handleSubmitFormDetails = useCallback(()=>{
        const apiCall =  async ()=>{
-        const data = await fetch("https://housing-84si.onrender.com/api/verifyHouse",{
+        const data = await fetch("http://localhost:3000/api/verifyHouse",{
             method:"post",
             headers: {"content-type": "application/json"},
             body: JSON.stringify({
                verify: verifyHouseDetails 
             })   
         })
-        
         const response = await data.json()
         console.log(response) 
     }
