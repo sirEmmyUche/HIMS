@@ -18,8 +18,6 @@ import Dashboard_Profile_Layout from "./layouts/dashboard-nav.jsx"
 function App() {
   return (
 <Routes>
-  <Route>
-
         {/* Allowed for pubilc view */}
 
       <Route element={<Layout/>}>
@@ -30,7 +28,7 @@ function App() {
       <Route path="/Login" element={<Login/>} />
       <Route path="/Signup" element={<Signup/>} />
 
-      {/* Restricted from the public */}
+      {/* Restricted from the public views*/}
       <Route element={<RequireAuth/>}>
       <Route element={<Dashboard_Profile_Layout/>} >
         <Route path='/dashboard' element={<Profile/>}/>
@@ -41,7 +39,6 @@ function App() {
       
     {/* 404 Error page */}
     <Route path='*' element={<ErrorPage/>}/>
-  </Route>
   </Routes>
   )
 }

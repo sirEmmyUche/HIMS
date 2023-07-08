@@ -6,10 +6,12 @@ const RequireAuth = ({ allowedRoles }) => {
     const location = useLocation();
 
     return (
-        auth?.user
-            ? <Outlet />
-            : <Navigate to="/login" state={{ from: location }} replace />
+        auth?.loginFormData
+            ?  <Outlet />
+            : <Navigate to="/Signup" state={{ from: location }} replace />
     );
 }
 
 export default RequireAuth;
+
+{/* <Navigate to ="/dashboard"/> */}

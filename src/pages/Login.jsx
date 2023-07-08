@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react"
 import useAuth from '../hooks/useAuth';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation, } from 'react-router-dom';
+import { loginUser } from "../api.js"
 import "../styles/login.css"
 
 
@@ -8,17 +9,21 @@ import "../styles/login.css"
   const {setAuth} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from || "/dashboard";
   const [loginFormData, setLoginFormData] = useState({
     email:"",
     password:""
   })
-  const [errMsg, setErrMsg] = useState('');
-
-  
-  useEffect(() => {
-    setErrMsg('');
-},[loginFormData])
+ 
+   const postLoginDataDetails = async ()=>{
+    try{
+      const data = await loginUser(loginFormData);
+      localStorage.setItem("loggedin", true)
+      console.log(data)
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   const handleLoginFormData = (e)=>{
     setLoginFormData((prev)=>{
@@ -28,30 +33,30 @@ import "../styles/login.css"
     })
   }
 
-  const postLoginDataDetails = useCallback(()=>{
-    try{
-      const loginData = async ()=>{
-        const data = await fetch("http://localhost:3000/login", {
-           method:"post",
-           headers:{"content-type":"application/json"},
-           body:JSON.stringify(loginFormData)
-         })
-         const response = await data.json()
-         const accessToken = response?.token;
-         const userFirstName = response?.firstName;
-         const userLastName = response?.lastName;
-         setAuth({userFirstName, userLastName, accessToken});
-        //  console.log(Auth)
-         navigate(from, { replace: true });
-       }
-       loginData();
-    }catch(err){
-      if(!err?.response){setErrMsg('No Server Response');}
-      if (err.response?.status === 404){setErrMsg('Missing Username or Password');}
-    }
+  // const postLoginDataDetails = useCallback(()=>{
+  //   try{
+  //     const loginData = async ()=>{
+  //       const data = await fetch("http://localhost:3000/login", {
+  //          method:"post",
+  //          headers:{"content-type":"application/json"},
+  //          body:JSON.stringify(loginFormData)
+  //        })
+  //        const response = await data.json()
+  //        const accessToken = response?.token;
+  //        const userFirstName = response?.firstName;
+  //        const userLastName = response?.lastName;
+  //        setAuth({accessToken, userFirstName, userLastName });
+  //       //  setLoginFormData("")
+  //        navigate(from, { replace: true });
+  //      }
+  //      loginData();
+  //   }catch(err){
+  //     if(!err?.response){setErrMsg('No Server Response');}
+  //     if (err.response?.status === 404){setErrMsg('Missing Username or Password');}
+  //   }
    
-  },[loginFormData])
-  // console.log(Auth)
+  // },[loginFormData])
+  
 
   const handleSubmitForm = (event)=>{
     event.preventDefault();
@@ -60,7 +65,7 @@ import "../styles/login.css"
   return (
     <div id="login-wrapper">
         <div className="form-wrapper">
-        <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+        {/* <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
           <h3>Sign In</h3>
           <form className="form-data" onSubmit={handleSubmitForm}>
             <label>
