@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useRef} from "react"
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation, } from 'react-router-dom';
 import { loginUser } from "../api.js"
@@ -6,6 +6,7 @@ import "../styles/login.css"
 
 
  function Login(){
+  const useref = useRef(null)
   const {setAuth} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,12 +15,23 @@ import "../styles/login.css"
     email:"",
     password:""
   })
+
+  // const clearInputData = ()=>{
+  //   useref.current.focus()
+  // }
  
    const postLoginDataDetails = async ()=>{
     try{
       const data = await loginUser(loginFormData);
       localStorage.setItem("loggedin", true)
-      console.log(data)
+      let message = data.message
+      let token = data.token
+      let fName = data.firstName
+      let lName = data.lastName
+      // let fullName = data.firstName+""+data.lastName
+      setAuth({token, message, fName, lName})
+      // console.log(fullName)
+      navigate(from, { replace: true });
     }catch(err){
       console.log(err)
     }
@@ -33,31 +45,6 @@ import "../styles/login.css"
     })
   }
 
-  // const postLoginDataDetails = useCallback(()=>{
-  //   try{
-  //     const loginData = async ()=>{
-  //       const data = await fetch("http://localhost:3000/login", {
-  //          method:"post",
-  //          headers:{"content-type":"application/json"},
-  //          body:JSON.stringify(loginFormData)
-  //        })
-  //        const response = await data.json()
-  //        const accessToken = response?.token;
-  //        const userFirstName = response?.firstName;
-  //        const userLastName = response?.lastName;
-  //        setAuth({accessToken, userFirstName, userLastName });
-  //       //  setLoginFormData("")
-  //        navigate(from, { replace: true });
-  //      }
-  //      loginData();
-  //   }catch(err){
-  //     if(!err?.response){setErrMsg('No Server Response');}
-  //     if (err.response?.status === 404){setErrMsg('Missing Username or Password');}
-  //   }
-   
-  // },[loginFormData])
-  
-
   const handleSubmitForm = (event)=>{
     event.preventDefault();
     postLoginDataDetails();
@@ -65,13 +52,14 @@ import "../styles/login.css"
   return (
     <div id="login-wrapper">
         <div className="form-wrapper">
-        {/* <p className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+        {/* <p className={message ? "errmsg" : "offscreen"} aria-live="assertive">{auth.message}</p> */}
           <h3>Sign In</h3>
           <form className="form-data" onSubmit={handleSubmitForm}>
             <label>
               E-Mail:<br/>
               <input type="email"
               required
+              ref={useref}
               placeholder="example@gmail.com"
               name="email"
               value={loginFormData.email}
@@ -82,6 +70,7 @@ import "../styles/login.css"
               Password:<br/>
               <input type="password"
               required
+              ref={useref}
               placeholder="enter password"
               name="password"
               value={loginFormData.password}

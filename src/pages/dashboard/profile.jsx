@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import "../../styles/profile.css"
+import useAuth from '../../hooks/useAuth';
 
 
 function Profile (){
+    const {auth} = useAuth();
     return (
         <nav className="dashboard-nav">
             <div className="profile-menu-bar"><img src="/images/icon-menu.svg" alt="menu-bar"/></div>
@@ -10,7 +12,7 @@ function Profile (){
             <div id ="ul-wrapper">
             <div className="dashboard-profile-pic">
                 <div className="profile-pic-box"><img src="/images/parthenon.svg" alt="profile-pic"/></div>
-                <p>Name of User</p>
+                <p>{auth.fName}</p>
             </div>
             <ul className="dashboard-nav-ul">
                 

@@ -1,5 +1,7 @@
 import { useContext, useState, useCallback} from "react"
+import { Navigate } from "react-router-dom"
 import {Link} from "react-router-dom"
+import { signUpUser } from "../api.js"
 import "../styles/signup.css"
 
 function Signup() {
@@ -11,18 +13,17 @@ function Signup() {
     password:""
   })
 
-  const postSignupUserDetails = useCallback(()=>{
-    const signupdata = async ()=>{
-        const data = await fetch("http://localhost:3000/signup",{
-          method:"post",
-          headers:{"content-type":"application/json"},
-          body:JSON.stringify(signupUserData)
-        })
-        const response = data.json()
-        console.log(response)
-    }
-    signupdata()
-  },[signupUserData])
+  const postSignupUserDetails = async ()=>{
+    try{
+      const res = await signUpUser(signupUserData)
+      console.log(res)
+      if(res.status===200){
+        return <Navigate to="/Login" />
+      }else{
+        return res.message
+      }
+    }catch(err){console.log(err)}
+  }
 
   const handleSignupUserData = (e)=>{
     setSignupUserData((prev)=>{

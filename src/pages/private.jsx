@@ -6,7 +6,7 @@ const RequireAuth = ({ allowedRoles }) => {
     const location = useLocation();
 
     return (
-        auth?.loginFormData
+        auth?.token
             ?  <Outlet />
             : <Navigate to="/Signup" state={{ from: location }} replace />
     );
