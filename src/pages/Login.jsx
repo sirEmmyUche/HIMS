@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef} from "react"
+import { useState, useEffect, useRef} from "react"
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation, } from 'react-router-dom';
 import { loginUser } from "../api.js"
@@ -9,17 +9,18 @@ import "../styles/login.css"
   const useref = useRef(null)
   const {setAuth} = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation(); 
   const from = location.state?.from || "/dashboard";
   const [loginFormData, setLoginFormData] = useState({
     email:"",
     password:""
-  })
+  }) 
 
-  // const clearInputData = ()=>{
-  //   useref.current.focus()
-  // }
- 
+  // useEffect(()=>{
+  //    useref.current.focus()
+  // },[])
+  
+
    const postLoginDataDetails = async ()=>{
     try{
       const data = await loginUser(loginFormData);

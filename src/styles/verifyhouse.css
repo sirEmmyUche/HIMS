@@ -17,7 +17,7 @@
     color:#fff
 }
 
-#form-data{
+#form-data,#result-wrapper{
     border: 1px solid transparent;
     background-color: #f2f2f2;
     border-radius: 6px 6px 6px 6px;
@@ -57,3 +57,28 @@ input{
     cursor: pointer;
   }
   
+
+.result-img-box{
+    width: 50%;
+    border: 1px solid transparent;
+    margin: 2rem;
+}
+
+.name-of-owner{
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.caution{
+    color: #ff0000;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+span{
+    font-size: 1rem;
+    font-weight: 900;
+}
