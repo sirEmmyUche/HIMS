@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 function Profile (){
     const {auth} = useAuth();
     return (
-        <nav className="dashboard-nav">
+        <nav className="dashboard-nav"  >
             <div className="profile-menu-bar"><img src="/images/icon-menu.svg" alt="menu-bar"/></div>
 
             <div id ="ul-wrapper">

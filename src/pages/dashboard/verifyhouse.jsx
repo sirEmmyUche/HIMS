@@ -3,8 +3,8 @@ import { verifyHouse } from "../../api"
 import "../../styles/verifyhouse.css"
 
 function VerifyHouse(){
-    const [showResult, setShowResult] = useState(false)
-    const [errorMessage, setErrorMessage] = useState("")
+    const [showResult, setShowResult] = useState(null)
+    const [errorMessage, setErrorMessage] = useState(null)
     const [verifyHouseDetails, setVerifyHouseDetails]= useState({houseNumber:"",state:"",LGA:"",street:"",})
 
     // const userRef = useRef();
@@ -23,9 +23,17 @@ function VerifyHouse(){
             const data = await verifyHouse(verifyHouseDetails)
             let owner = data.owner;
             let houseImg = data.houseImg;
-            setShowResult({owner, houseImg})
+            let ErrMsg = data.message;
+            let status = data.status;
+            if(status != 200){
+                setErrorMessage({ErrMsg})
+            } 
+            if(owner){
+                setShowResult({owner, houseImg})
+                console.log(houseImg)
+            }
         }catch(err){
-            setErrorMessage("Sorry, we've got no record of such!")
+            console.log(err)
         }
     }
 
@@ -84,15 +92,13 @@ function VerifyHouse(){
         </form>
         :
         <div id="result-wrapper">
-            {/* <img  alt="house-image"/> */}
             <img src={`http://localhost:3000${showResult.houseImg}`} alt="house-image" className="result-img-box"/>
             <p className="name-of-owner">Property Owner: {showResult.owner}</p>
             <p className="caution"><span>Caution:</span> Image shown may not display the true image of the Property.
                 Image displayed are gotten from the image uploaded at the time of registration
                 of the property.
             </p>
-        </div>
-            }
+        </div>}
         </section>
     )
 }

@@ -17,7 +17,7 @@
     color: #fff;
 }
 
-#register-form-data{
+#register-form-data,#show-result-wrapper{
     margin-top: 2rem;
     padding: 20px;
     max-width: 75%;
@@ -38,4 +38,16 @@
 #register-form-data input[type=submit]{
     -webkit-padding:4px 15px ;
     padding: 4px 15px;
+}
+
+.show-result{
+    background-color: #f2f2f2;
+}
+
+.show-result-text{
+    color: #49df23b9;
+    font-weight: 900;
+    font-size: 2.5rem;
+    display: flex;
+    place-items: center;
 }
