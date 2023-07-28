@@ -4,7 +4,6 @@ import "../../styles/verifyhouse.css"
 
 function VerifyHouse(){
     const [showResult, setShowResult] = useState(null)
-    const [errorMessage, setErrorMessage] = useState(null)
     const [verifyHouseDetails, setVerifyHouseDetails]= useState({houseNumber:"",state:"",LGA:"",street:"",})
 
     // const userRef = useRef();
@@ -26,11 +25,10 @@ function VerifyHouse(){
             let ErrMsg = data.message;
             let status = data.status;
             if(status != 200){
-                setErrorMessage({ErrMsg})
+                setShowResult({ErrMsg})
             } 
             if(owner){
                 setShowResult({owner, houseImg})
-                console.log(houseImg)
             }
         }catch(err){
             console.log(err)
@@ -92,12 +90,19 @@ function VerifyHouse(){
         </form>
         :
         <div id="result-wrapper">
-            <img src={`http://localhost:3000${showResult.houseImg}`} alt="house-image" className="result-img-box"/>
+            {showResult.owner?<div id="result-wrapper">
+            <img src={`http://localhost:3000/${showResult.houseImg}`} alt="house-image" className="result-img-box"/>
             <p className="name-of-owner">Property Owner: {showResult.owner}</p>
             <p className="caution"><span>Caution:</span> Image shown may not display the true image of the Property.
                 Image displayed are gotten from the image uploaded at the time of registration
                 of the property.
             </p>
+            </div>
+            :
+            <div id="result-wrapper">
+                <p className="not-found">{showResult.ErrMsg}</p>
+            </div>
+                }
         </div>}
         </section>
     )

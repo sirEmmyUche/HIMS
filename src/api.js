@@ -8,7 +8,7 @@ export async function loginUser(credentials){
                 body: JSON.stringify(credentials)
             })
         const data =await res.json();
-        if(!res.ok || res.status===404){
+        if(!res.ok || res.status===404 || res.status===500){
             throw {
                 message:data.message,
                 status: res.status
@@ -16,7 +16,7 @@ export async function loginUser(credentials){
         }
         return data
     }catch(err){
-        console.log(err)
+        return err
     }
 }
 
@@ -30,7 +30,7 @@ export async function signUpUser(credentials){
                 body: JSON.stringify(credentials)
             })
         const data =await res.json();
-        if(!res.ok || res.status===404){
+        if(!res.ok || res.status===404 || res.status===500){
             throw {
                 message:data.message,
                 status: res.status
@@ -53,7 +53,7 @@ export async function verifyHouse(credentials){
                 body: JSON.stringify(credentials)
             })
         const data =await res.json();
-        if(!res.ok || res.status===404){
+        if(!res.ok || res.status===404 || res.status===500){
             throw {
                 message:data.message,
                 status: res.status
@@ -61,7 +61,6 @@ export async function verifyHouse(credentials){
         }
         return data
     }catch(err){
-        // console.log(err)
         return err
     }
 }
@@ -73,12 +72,10 @@ export async function registerHouse(credentials){
         const res = await fetch(url,
             {
                 method:"post", 
-                // headers:{"content-type": "multipart/form-data"},
-                // body: JSON.stringify(credentials)
                 body: credentials
             })
         const data = await res.json();
-        if(!res.ok || res.status===404){
+        if(!res.ok || res.status===404 || res.status===500){
             throw {
                 message:data.message,
                 status: res.status

@@ -8,9 +8,10 @@ function ServicesDescription(){
     const [serviceDetails, setServiceDetails] = useState(null)
     useEffect(()=>{
         async function detailsData(){
-            const data = await fetch(`/api/services/${params.id}`)
+            const data = await fetch(`http://localhost:3000/api/service/${params.id}`)
             const res = await data.json()
-            setServiceDetails(res.service) 
+            console.log(res)
+            setServiceDetails(res) 
         }
         detailsData()
     },[params.id])

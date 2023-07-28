@@ -1,7 +1,7 @@
 
 #register-house{
     width: calc(100vw - 15vw);
-    height:100vh;
+    min-height:100vh;
     background-image: url("/images/james-wheeler-1.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;

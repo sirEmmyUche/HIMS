@@ -7,9 +7,8 @@ function Services(){
 const [serviceRendered, setServiceRendered] = useState([]);
 useEffect(()=>{
     async function apiData(){
-    const data = await fetch("/api/services")
+    const data = await fetch("http://localhost:3000/api/service")
     const response = await data.json();
-
     setServiceRendered(response.services)
     }
     apiData();
@@ -17,13 +16,13 @@ useEffect(()=>{
 
 const servicesRenderedElement = serviceRendered.map((service)=>{
        return(
-        <div className="service-wrpper" key={service.id}>
+        <div className="service-wrpper" key={service._id}>
             <div className="service-image-container">
             <img src={service.imgUrl} alt="house-image"/>
             </div>
         <h4>{service.name}</h4>
         <p className="brief_desc">{service.brief_desc}</p>
-        <Link to={`/Services/${service.id}`}><div className="read-more">Read more</div></Link>
+        <Link to={`/Services/${service._id}`}><div className="read-more">Read more</div></Link>
         </div>
        ) 
 })

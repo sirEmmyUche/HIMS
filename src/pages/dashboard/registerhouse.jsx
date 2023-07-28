@@ -53,7 +53,7 @@ const handleSubmit = (event)=>{
     name="nameOfOwner"
     value={houseDetails.nameOfOwner}
     onChange={handleHouseDetails}
-    placeholder="name of owner"/>
+    placeholder="Enter fullname of owner"/>
 </label>
 
 <label className="label-css">House Number:<br/>

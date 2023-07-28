@@ -7,32 +7,39 @@ import "../styles/login.css"
 
  function Login(){
   const useref = useRef(null)
-  const {setAuth} = useAuth();
+  const {auth, setAuth} = useAuth();
   const navigate = useNavigate();
   const location = useLocation(); 
   const from = location.state?.from || "/dashboard";
-  const [loginFormData, setLoginFormData] = useState({
-    email:"",
-    password:""
-  }) 
+  const [loginFormData, setLoginFormData] = useState({email:"",password:""}) 
 
-  // useEffect(()=>{
-  //    useref.current.focus()
-  // },[])
-  
+  const googleLogin = async ()=>{
+    try {
+      const response = await fetch('http://localhost:3000/auth/google/',{
+        method: "get"
+      });
+      const redirectUrl  = await response.json();
+      console.log(redirectUrl)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
    const postLoginDataDetails = async ()=>{
     try{
       const data = await loginUser(loginFormData);
       localStorage.setItem("loggedin", true)
+      let status = data.status
       let message = data.message
       let token = data.token
       let fName = data.firstName
-      let lName = data.lastName
-      // let fullName = data.firstName+""+data.lastName
-      setAuth({token, message, fName, lName})
-      // console.log(fullName)
+      if(status != 200){
+        setAuth({message})
+      }
+      if(token){
+        setAuth({token, message, fName})
       navigate(from, { replace: true });
+      }
     }catch(err){
       console.log(err)
     }
@@ -53,7 +60,7 @@ import "../styles/login.css"
   return (
     <div id="login-wrapper">
         <div className="form-wrapper">
-        {/* <p className={message ? "errmsg" : "offscreen"} aria-live="assertive">{auth.message}</p> */}
+        <p className={auth.message?"error-msg":null}>{auth.message}</p>
           <h3>Sign In</h3>
           <form className="form-data" onSubmit={handleSubmitForm}>
             <label>
@@ -82,7 +89,7 @@ import "../styles/login.css"
           <div className="sigin-with-google-and-create-account-wrapper">
             <div className="singin-with-google-wrapper">
               <div className="google-icon-box"><img src="/images/google-icon.jfif"/></div>
-              <p>Sign In with Google</p>
+              <p onClick={googleLogin}>Sign In with Google</p>
               </div>
             <div className="create-an-account">
              <Link to={"/Signup"}>Create an Account</Link>

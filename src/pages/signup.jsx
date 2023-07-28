@@ -1,4 +1,4 @@
-import { useContext, useState, useCallback} from "react"
+import {useState} from "react"
 import { Navigate } from "react-router-dom"
 import {Link} from "react-router-dom"
 import { signUpUser } from "../api.js"
@@ -6,19 +6,14 @@ import "../styles/signup.css"
 
 function Signup() {
 
-  const [signupUserData,setSignupUserData] = useState({
-    firstName:"",
-    lastName:"",
-    email:"",
-    password:""
-  })
+  const [signupUserData,setSignupUserData] = useState({firstName:"",lastName:"",email:"",password:""})
 
   const postSignupUserDetails = async ()=>{
     try{
       const res = await signUpUser(signupUserData)
       console.log(res)
       if(res.status===200){
-        return <Navigate to="/Login" />
+         <Navigate to="/Login" />
       }else{
         return res.message
       }
