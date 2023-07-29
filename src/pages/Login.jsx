@@ -13,26 +13,15 @@ import "../styles/login.css"
   const from = location.state?.from || "/dashboard";
   const [loginFormData, setLoginFormData] = useState({email:"",password:""}) 
 
-  const googleLogin = async ()=>{
-    try {
-      const response = await fetch('http://localhost:3000/auth/google/',{
-        method: "get"
-      });
-      const redirectUrl  = await response.json();
-      console.log(redirectUrl)
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
    const postLoginDataDetails = async ()=>{
     try{
       const data = await loginUser(loginFormData);
-      localStorage.setItem("loggedin", true)
       let status = data.status
       let message = data.message
       let token = data.token
       let fName = data.firstName
+      localStorage.setItem("accessToken", token)
       if(status != 200){
         setAuth({message})
       }
@@ -89,7 +78,7 @@ import "../styles/login.css"
           <div className="sigin-with-google-and-create-account-wrapper">
             <div className="singin-with-google-wrapper">
               <div className="google-icon-box"><img src="/images/google-icon.jfif"/></div>
-              <p onClick={googleLogin}>Sign In with Google</p>
+              <p>Sign In with Google</p>
               </div>
             <div className="create-an-account">
              <Link to={"/Signup"}>Create an Account</Link>

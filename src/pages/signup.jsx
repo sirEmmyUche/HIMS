@@ -1,19 +1,20 @@
 import {useState} from "react"
-import { Navigate } from "react-router-dom"
-import {Link} from "react-router-dom"
+import {Link, useNavigate, useLocation,  } from "react-router-dom";
 import { signUpUser } from "../api.js"
 import "../styles/signup.css"
 
 function Signup() {
-
-  const [signupUserData,setSignupUserData] = useState({firstName:"",lastName:"",email:"",password:""})
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from || "/Login";
+  const [signupUserData,setSignupUserData] = useState({firstName:"",lastName:"",email:"",password:""});
 
   const postSignupUserDetails = async ()=>{
     try{
-      const res = await signUpUser(signupUserData)
-      console.log(res)
-      if(res.status===200){
-         <Navigate to="/Login" />
+      const res = await signUpUser(signupUserData);
+      let message = res.message;
+      if(message==="signed up successful"){
+        navigate(from, { replace: true });
       }else{
         return res.message
       }
@@ -21,11 +22,7 @@ function Signup() {
   }
 
   const handleSignupUserData = (e)=>{
-    setSignupUserData((prev)=>{
-      return {...prev,
-      [e.target.name]:e.target.value
-    }
-    })
+    setSignupUserData((prev)=>{ return {...prev,[e.target.name]:e.target.value}})
   }
 
   const handleSubmitForm = (event)=>{
