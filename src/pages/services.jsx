@@ -7,7 +7,7 @@ function Services(){
 const [serviceRendered, setServiceRendered] = useState([]);
 useEffect(()=>{
     async function apiData(){
-    const data = await fetch("http://localhost:3000/api/service")
+    const data = await fetch("https://housing-84si.onrender.com/api/service")
     const response = await data.json();
     setServiceRendered(response.services)
     }
