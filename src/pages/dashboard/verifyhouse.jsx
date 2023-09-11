@@ -4,10 +4,9 @@ import "../../styles/verifyhouse.css"
 
 function VerifyHouse(){
     const [showResult, setShowResult] = useState(null)
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [verifyHouseDetails, setVerifyHouseDetails]= useState({houseNumber:"",state:"",LGA:"",street:"",})
 
-    // const userRef = useRef();
-    // const errRef = useRef()
 
     const handleVerifyHouseDetails = (event)=>{
         setVerifyHouseDetails((prev)=>{
@@ -19,6 +18,7 @@ function VerifyHouse(){
 
     const handleSubmitFormDetails = async ()=>{
         try{
+            setIsSubmitting(true)
             const data = await verifyHouse(verifyHouseDetails)
             let owner = data.owner;
             let houseImg = data.houseImg;
@@ -29,6 +29,7 @@ function VerifyHouse(){
             } 
             if(owner){
                 setShowResult({owner, houseImg})
+                setIsSubmitting(false)
             }
         }catch(err){
             console.log(err)
@@ -49,26 +50,30 @@ function VerifyHouse(){
         <section id="verify-house">
             <h1>Verify House</h1>
             {!showResult?
-            <form id="form-data"  onSubmit={handleSubmit}>
-            <label className="label-css">House Number:<br/>
-                <input type="number"
-                required
-                // ref={userRef}
-                name="houseNumber"
-                value={verifyHouseDetails.houseNumber}
-                onChange={handleVerifyHouseDetails}
-                placeholder="Enter House number"/>
-            </label>
-            <label className="label-css">Street:<br/>
-                <input type="text"
-                 required
-                //  ref={userRef}
-                 name="street"
-                 value={verifyHouseDetails.street}
-                 onChange={handleVerifyHouseDetails}
-                placeholder="Enter street name"/>
-            </label>
-            <label className="label-css">LGA:<br/>
+            (<form id="form-data"  onSubmit={handleSubmit}>
+                <div className="form-field">
+                    <label className="label-css">House Number:<br/>
+                    <input type="number"
+                    required
+                    // ref={userRef}
+                    name="houseNumber"
+                    value={verifyHouseDetails.houseNumber}
+                    onChange={handleVerifyHouseDetails}
+                    placeholder="Enter House number"/>
+                    </label>
+                    <label className="label-css">Street:<br/>
+                    <input type="text"
+                    required
+                    //  ref={userRef}
+                    name="street"
+                    value={verifyHouseDetails.street}
+                    onChange={handleVerifyHouseDetails}
+                    placeholder="Enter street name"/>
+                    </label>
+                </div>
+
+           <div className="form-field" >
+             <label className="label-css">LGA:<br/>
                 <input type="text"
                 required
                 // ref={userRef}
@@ -86,10 +91,17 @@ function VerifyHouse(){
                  onChange={handleVerifyHouseDetails}
                 placeholder="Example: Ondo"/>
             </label>
-            <input type="submit" placeholder="submit" onSubmit={handleSubmit}/>
-        </form>
+           </div>
+           
+            <div className="verify-submit-btn">
+              <button
+              type="submit" 
+              disabled={isSubmitting}>
+                {isSubmitting?"Verifying...":"Verify"}
+              </button></div>
+        </form>)
         :
-        <div id="result-wrapper">
+        (<div id="result-wrapper">
             {showResult.owner?<div id="result-wrapper">
             <img src={`http://localhost:3000/${showResult.houseImg}`} alt="house-image" className="result-img-box"/>
             <p className="name-of-owner">Property Owner: {showResult.owner}</p>
@@ -103,7 +115,7 @@ function VerifyHouse(){
                 <p className="not-found">{showResult.ErrMsg}</p>
             </div>
                 }
-        </div>}
+        </div>)}
         </section>
     )
 }

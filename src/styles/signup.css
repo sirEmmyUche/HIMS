@@ -10,7 +10,7 @@
 
 .signup-form-wrapper{
     width: 50%;
-    min-height: 70%;
+    height: 80%;
     padding: 20px;
     margin-top: 3rem;
     border: 1px solid #ffff;
@@ -79,6 +79,21 @@
 .singin-with-google-wrapper>p{
     color: #00A3E0;
     margin-left:10px;
+}
+
+.login-submit-btn{
+    width:100%;
+    border: 1px solid transparent;
+    margin-top: 2rem;
+}
+
+.login-submit-btn>button{
+    border: 1px solid #4CAF50;
+    width: 100%;
+    padding: 12px 20px;
+    background-color:#4CAF50;
+    color: #fff;
+    cursor: pointer;
 }
 
 @media screen and (max-width:700px) {

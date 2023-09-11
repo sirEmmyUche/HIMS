@@ -1,5 +1,4 @@
-
-import {Routes, Route, Navigate} from "react-router-dom"
+import {Routes, Route,} from "react-router-dom"
 import Home from "./pages/Home.jsx"
 import Login from "./pages/Login.jsx"
 import Signup from "./pages/signup.jsx"
@@ -35,7 +34,7 @@ function App() {
         <Route path='/dashboard/verifyhouse' element={<VerifyHouse/>}/>
         <Route path='/dashboard/registerhouse' element={<RegisterHouse />}/>
       </Route>
-      </Route>
+      </Route> 
       
     {/* 404 Error page */}
     <Route path='*' element={<ErrorPage/>}/>

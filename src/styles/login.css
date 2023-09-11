@@ -10,10 +10,10 @@
 
 .form-wrapper{
     width: 50%;
-    min-height: 70%;
+    height:70%;
     padding: 20px;
     margin-top: 5rem;
-    border: 1px solid #ffff;
+    border: 1px solid #fff;
     background-color: #ffff;
     display: flex;
     flex-direction: column;
@@ -57,6 +57,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.login-submit-btn{
+    width:100%;
+    border: 1px solid transparent;
+    margin-top: 2rem;
+}
+
+.login-submit-btn>button{
+    border: 1px solid #49df23;
+    width: 100%;
+    padding: 12px 20px;
+    background-color:#4CAF50;
+    color: #fff;
+    cursor: pointer;
 }
 
 .create-an-account>a{

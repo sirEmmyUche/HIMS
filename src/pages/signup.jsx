@@ -6,8 +6,10 @@ import "../styles/signup.css"
 function Signup() {
   const location = useLocation();
   const navigate = useNavigate();
+
   const from = location?.state?.from || "/Login";
   const [signupUserData,setSignupUserData] = useState({firstName:"",lastName:"",email:"",password:""});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const postSignupUserDetails = async ()=>{
     try{
@@ -27,6 +29,7 @@ function Signup() {
 
   const handleSubmitForm = (event)=>{
     event.preventDefault();
+    setIsSubmitting(true);
     postSignupUserDetails();
   }
   return (
@@ -73,7 +76,12 @@ function Signup() {
               value={signupUserData.password}
               onChange={handleSignupUserData}/>
             </label>
-            <input type="submit" onSubmit={handleSubmitForm}/>
+            <div className="login-submit-btn">
+              <button
+              type="submit" 
+              disabled={isSubmitting}>
+                {isSubmitting?"Submitting...":"Submit"}
+              </button></div>
           </form>
           <div className="sigin-with-google-and-create-account-wrapper">
             <div className="singin-with-google-wrapper">

@@ -8,25 +8,30 @@ import "../styles/login.css"
  function Login(){
   const useref = useRef(null)
   const {auth, setAuth} = useAuth();
+
   const navigate = useNavigate();
   const location = useLocation(); 
+
   const from = location.state?.from || "/dashboard";
   const [loginFormData, setLoginFormData] = useState({email:"",password:""}) 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
    const postLoginDataDetails = async ()=>{
     try{
+      setIsSubmitting(true);
       const data = await loginUser(loginFormData);
-      let status = data.status
-      let message = data.message
-      let token = data.token
-      let fName = data.firstName
-      localStorage.setItem("accessToken", token)
+      let status = data.status;
+      let message = data.message;
+      let token = data.token;
+      localStorage.setItem("accessToken", JSON.stringify(token));
+
       if(status != 200){
         setAuth({message})
+        setIsSubmitting(false)
       }
       if(token){
-        setAuth({token, message, fName})
+        setAuth({token, message,})
       navigate(from, { replace: true });
       }
     }catch(err){
@@ -46,6 +51,7 @@ import "../styles/login.css"
     event.preventDefault();
     postLoginDataDetails();
   }
+ 
   return (
     <div id="login-wrapper">
         <div className="form-wrapper">
@@ -73,7 +79,12 @@ import "../styles/login.css"
               value={loginFormData.password}
               onChange={handleLoginFormData}/>
             </label>
-            <input type="submit"/>
+            <div className="login-submit-btn">
+              <button
+              type="submit" 
+              disabled={isSubmitting}>
+                {isSubmitting?"Signing In...":"Log In"}
+              </button></div>
           </form>
           <div className="sigin-with-google-and-create-account-wrapper">
             <div className="singin-with-google-wrapper">
