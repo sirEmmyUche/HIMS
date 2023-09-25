@@ -103,7 +103,8 @@ function VerifyHouse(){
         :
         (<div id="result-wrapper">
             {showResult.owner?<div id="result-wrapper">
-            <img src={`http://localhost:3000/${showResult.houseImg}`} alt="house-image" className="result-img-box"/>
+            <img src={`https://housing-84si.onrender.com/${showResult.houseImg}`} alt="house-image" 
+            className="result-img-box"/>
             <p className="name-of-owner">Property Owner: {showResult.owner}</p>
             <p className="caution"><span>Caution:</span> Image shown may not display the true image of the Property.
                 Image displayed are gotten from the image uploaded at the time of registration

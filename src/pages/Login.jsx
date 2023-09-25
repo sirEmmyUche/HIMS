@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from "react"
+import { useState, useEffect, useRef, useCallback} from "react"
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation, } from 'react-router-dom';
 import { loginUser } from "../api.js"
@@ -15,6 +15,18 @@ import "../styles/login.css"
   const from = location.state?.from || "/dashboard";
   const [loginFormData, setLoginFormData] = useState({email:"",password:""}) 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleGoogleLogin = useCallback(async()=>{
+    try{
+       // window.location.href = 'https://housing-84si.onrender.com/auth/google';
+    const response = await fetch('https://housing-84si.onrender.com/auth/google',{
+      method:"post",
+      headers:{"content-type":"application/json"},
+    });
+    const data = await response.json();
+    console.log(data)
+    }catch(err){console.log(err)}
+  })
 
 
    const postLoginDataDetails = async ()=>{
@@ -89,7 +101,7 @@ import "../styles/login.css"
           <div className="sigin-with-google-and-create-account-wrapper">
             <div className="singin-with-google-wrapper">
               <div className="google-icon-box"><img src="/images/google-icon.jfif"/></div>
-              <p>Sign In with Google</p>
+              <p onClick={handleGoogleLogin}>Sign In with Google</p>
               </div>
             <div className="create-an-account">
              <Link to={"/Signup"}>Create an Account</Link>

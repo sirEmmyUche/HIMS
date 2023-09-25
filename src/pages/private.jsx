@@ -11,10 +11,9 @@ const RequireAuth = ({ allowedRoles }) => {
             try{
                 const getToken = JSON.parse(localStorage.getItem("accessToken"));
                 if(!getToken){
-                    //console.log("Token not found")
                     setErrMsg("Token Found Please SignUp or LogIn if already have an account")
                 }
-                const verifyUser = await fetch("http://localhost:3000/verifyToken", {
+                const verifyUser = await fetch("https://housing-84si.onrender.com/verifyToken", {
                     method:"get",
                     headers:{
                         Accept:"application/json",

@@ -85,6 +85,7 @@
 }
 
 .singin-with-google-wrapper{
+    cursor:pointer;
     border: 1px solid transparent;
     display: flex;
     justify-content: center;
@@ -92,6 +93,7 @@
 }
 
 .singin-with-google-wrapper>p{
+    cursor: pointer;
     color: #00A3E0;
     margin-left:10px;
 }

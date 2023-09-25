@@ -1,6 +1,6 @@
 export async function loginUser(credentials){
     try{
-        const url = "http://localhost:3000/login";  //"https://housing-84si.onrender.com/login";
+        const url = "https://housing-84si.onrender.com/login"; 
         const res =await fetch(url,
             {
                 method:"post", 
@@ -22,7 +22,7 @@ export async function loginUser(credentials){
 
 export async function signUpUser(credentials){
     try{
-        const url = "http://localhost:3000/signup"//"https://housing-84si.onrender.com/signup";
+        const url = "https://housing-84si.onrender.com/signup";
         const res =await fetch(url,
             {
                 method:"post", 
@@ -45,7 +45,7 @@ export async function signUpUser(credentials){
 
 export async function verifyHouse(credentials){
     try{
-        const url = "http://localhost:3000/verifyHouse"//"https://housing-84si.onrender.com/verifyHouse"; 
+        const url = "https://housing-84si.onrender.com/verifyHouse";
         const res =await fetch(url,
             {
                 method:"post", 
@@ -68,7 +68,7 @@ export async function verifyHouse(credentials){
 
 export async function registerHouse(credentials){
     try{
-        const url = "http://localhost:3000/api/uploadFile";// "https://housing-84si.onrender.com/api/uploadFile"; 
+        const url = "https://housing-84si.onrender.com/api/uploadFile";
         const res = await fetch(url,
             {
                 method:"post", 
