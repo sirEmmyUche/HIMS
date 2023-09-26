@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 
-.home-nav{
+.home-pg-nav{
     height: 10vh;
     border: 1px solid transparent;
     box-shadow: 5px 5px 0 #808080;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;   
@@ -33,11 +34,12 @@
     height: auto;
 }
 
-.home-nav ul{
+ul{
+    border: 1px solid transparent;
     display: flex;
 }
 
-.home-nav ul li{
+ul li{
     list-style: none;
     padding-right: 2em;
     color: #212123;
@@ -54,9 +56,12 @@ a{
 
 
 
-@media screen and (max-width: 700px) { 
-#hidephoneMenubar{
+@media screen and (max-width: 768px) { 
+.home-pg-nav ul{
     display: none;
+    }
+.menubar{
+        z-index: 10;
     }
 
 #phoneMenubar{

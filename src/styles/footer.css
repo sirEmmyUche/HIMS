@@ -9,7 +9,7 @@ footer{
 }
 
 .footer-logo{
-    width: 10%;
+    width: 15%;
     border: 1px solid transparent;
 }
 
@@ -33,31 +33,23 @@ footer{
 
 
 .second-div{
-    width: 15%;
+    width: 30%;
     border: 1px solid transparent;
     display: flex;
-    justify-content: center;
+    justify-items: center;
+    align-items: center;
     flex-direction: column;
 }
 
-.second-div>h2{
-    text-align: center;
-}
+.ft-ul{
+    display: flex;
+    flex-direction: column;
+} 
 
-.second-div>ul li,.last-div>ul li{
-    text-align: center;
+.ft-ul li{
     color: #ffff;
     list-style:none;
     padding: 20px;
-}
-
-.last-div{
-    width: 30%;
-    border: 1px solid transparent;
-}
-
-.last-div h2{
-    text-align: center;
 }
 
 
@@ -76,7 +68,7 @@ footer{
         text-align: center;
     }
 
-    .first-div,.second-div,.last-div{
+    .first-div,.second-div{
         margin: 1rem;
         width: 100%;
     }

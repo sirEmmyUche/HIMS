@@ -11,8 +11,6 @@ import VerifyHouse from './pages/dashboard/verifyhouse.jsx'
 import RegisterHouse from './pages/dashboard/registerhouse.jsx'
 import Layout from "./layouts/layout.jsx"
 import Dashboard_Profile_Layout from "./layouts/dashboard-nav.jsx"
-// import "./server.js"
-// import '../App.css'
 
 function App() {
   return (

@@ -17,16 +17,16 @@ function Footer(){
             </div>
             <div className='second-div'>
                 <h2>Exclusive</h2>
-                <ul>
+                <ul className='ft-ul'>
                     <li>Project</li>
                     <li>Service</li>
                     <li>Blog</li>
                 </ul>
             </div>
         
-            <div className='last-div'>
+            <div className='second-div'>
                 <h2>Contact Us</h2>
-                <ul>
+                <ul className='ft-ul'>
                     <li>WhatsApp</li>
                     <li>Twitter</li>
                     <li>LinkedIn</li>
