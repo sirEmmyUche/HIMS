@@ -1,5 +1,4 @@
 import { registerHouse } from "../../api"
-// import { googleSignup } from "../../googlesignup"
 import {useState} from "react"
 import "../../styles/registerhouse.css"
 

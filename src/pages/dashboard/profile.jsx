@@ -1,49 +1,49 @@
 import { Link } from "react-router-dom"
-import "../../styles/profile.css"
+import {useState} from "react";
+import "../../styles/profile.css";
 import useAuth from '../../hooks/useAuth';
 
 
 function Profile (){
     const {auth} = useAuth();
-    return (
-        <nav className="dashboard-nav"  >
-            <div className="profile-menu-bar"><img src="/images/icon-menu.svg" alt="menu-bar"/></div>
+    const [toggleMenu, setToggleMenu] = useState(false);
 
-            <div id ="ul-wrapper">
+    const handleToggleMenu = ()=>{
+        setToggleMenu(!toggleMenu)
+    }
+        
+    return (
+        <nav id="dashboard-nav">
             <div className="dashboard-profile-pic">
-                <div className="profile-pic-box"><img src="/images/parthenon.svg" alt="profile-pic"/></div>
+                <div className="profile-pic-box">
+                    <img src="/images/HIMS-logo.jfif" alt="Logo"/>
+                </div>
                 <p>{auth.fName}</p>
             </div>
-            <ul className="dashboard-nav-ul">
+
+            <ul className={toggleMenu?"dashboard-nav-ul":null}>
                 
-                <Link to={"/dashboard/verifyhouse"}>
                     <div className="dashboard-icon-wrapper">
-                        <div className="icon-pic-box"><img src="/images/arc-de-triomphe.svg" alt="user profile-pic"/></div>
-                        <li>Verify Home</li>
-                    </div>
-                </Link>
-
-                    <Link to={"/dashboard/registerhouse"}>
-                        <div className="dashboard-icon-wrapper">
-                            <div  className="icon-pic-box"><img src="/images/statue-of-liberty.svg" alt="user profile-pic"/></div>
-                            <li>Register Home</li>
+                        <div className="icon-pic-box">
+                            <img src="/images/arc-de-triomphe.svg" alt="user profile-pic"/>
                         </div>
-                    </Link>
+                        <li>
+                            <Link to={"/dashboard/verifyhouse"}>Verify Home</Link>
+                        </li>
+                    </div>
 
-                <Link>
-                <div className="dashboard-icon-wrapper">
-                    <div  className="icon-pic-box"><img src="/images/eiffel-tower.svg" alt="user profile-pic"/></div>
-                    <li>List Property</li>
-                </div>
-                </Link>
+                        <div className="dashboard-icon-wrapper">
+                            <div className="icon-pic-box"><img src="/images/statue-of-liberty.svg" alt="user profile-pic"/></div>
+                            <li><Link to={"/dashboard/registerhouse"}>Register Home </Link></li>
+                        </div>
 
-                 <Link>
                     <div className="dashboard-icon-wrapper">
                         <div className="icon-pic-box"><img src="/images/settings.svg" alt="settings-icon"/></div>
-                        <li>Settings</li>
+                        <li><Link>Settings</Link></li>
                     </div>
-                </Link>
             </ul>
+            <div className="profile-menu-bar">
+                <img src="/images/icon-menu.svg" alt="menu-bar" onClick={handleToggleMenu}/>
             </div>
         </nav>
     )

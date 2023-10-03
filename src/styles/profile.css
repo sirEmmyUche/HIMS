@@ -1,35 +1,49 @@
-.dashboard-nav{
+#dashboard-nav{
     position: absolute;
     left: 0;
     top: 0;
-    border: 1px solid transparent;
+    border: 1px solid #808080;
     background-color: #ffffff;
     box-shadow: 3px 3px 0 #808080;
-    width: 15vw;
-    height: 100vh;
+    width: 15%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
 
-#ul-wrapper{
-    height: 90%;
+.profile-menu-bar{
+    display: none;
+    z-index: 3;
+ }
+
+
+.dashboard-profile-pic{
     border: 1px solid transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+ul:has(div){
+    height: 100%;
+    border: 1px solid transparent;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
+
 
 .dashboard-nav-ul{
-    border: 1px solid transparent;
-    height: 80%;
+    height: 100%;
+    width: 100%;
     list-style: none;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-}
+    justify-content: space-between;
+} 
 
 .icon-pic-box{
     border: 1px solid transparent;
@@ -43,19 +57,13 @@
     margin-bottom: 2em;
 }
 
-.dashboard-profile-pic{
-    border: 1px solid transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.dashboard-nav-ul a>li{
+
+#dashboard-nav-ul a>li{
     margin-left: 2rem;
 }
 
 .dashboard-icon-wrapper{
-    /* padding-bottom: 5rem; */
     border: 1px solid transparent;
     width: 100%;
     display: flex;
@@ -70,13 +78,51 @@
     background-color: #cec8c8;
 }
 
-.profile-menu-bar{
-   display: none;
-   width: 100%; 
-   z-index: 3;
-}
 
-@media screen and (max-width:700px){
+
+@media screen and (max-width:768px){
+    #dashboard-nav{
+        position: absolute;
+        height: 10vh;
+        width: 100%;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .dashboard-nav-ul{
+        display: flex;
+        position: absolute;
+        top: 9vh;
+        width: 100%;
+        height: 50vh;
+        z-index: 3;
+        background-color: #ffffff;
+        border: 1px solid color-mix(in srgb, gray, white 10%);
+        box-shadow: 2px 2px 2px color-mix(in srgb, gray, white 5%);
+        animation: slide 0.7s ease-in-out 0s;
+
+    }
+
+    .dashboard-profile-pic{
+        width: 25%;
+        height: 100%;
+        border: 1px solid transparent;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .profile-pic-box{
+        display: none;
+    }
+
+    ul:has(div){
+       display: none;
+    }
+
     .profile-menu-bar{
         display: inline-block;
     }

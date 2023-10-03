@@ -24,7 +24,7 @@ import "../styles/login.css"
       headers:{"content-type":"application/json"},
     });
     const data = await response.json();
-    console.log(data)
+   // console.log(data)
     }catch(err){console.log(err)}
   })
 

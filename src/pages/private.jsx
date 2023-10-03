@@ -11,7 +11,7 @@ const RequireAuth = ({ allowedRoles }) => {
             try{
                 const getToken = JSON.parse(localStorage.getItem("accessToken"));
                 if(!getToken){
-                    setErrMsg("Token Found Please SignUp or LogIn if already have an account")
+                    setErrMsg("Token not Found Please SignUp or LogIn if already have an account")
                 }
                 const verifyUser = await fetch("https://housing-84si.onrender.com/verifyToken", {
                     method:"get",
@@ -22,7 +22,7 @@ const RequireAuth = ({ allowedRoles }) => {
                 })
                 if(verifyUser.status === 200){
                     const result = await verifyUser.json();
-                    console.log(result)
+                    // console.log(result)
                     let username = result.username;
                     let userId = result.userId
                     let fName = username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
