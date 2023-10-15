@@ -18,7 +18,7 @@ function Profile (){
                 <div className="profile-pic-box">
                     <img src="/images/HIMS-logo.jfif" alt="Logo"/>
                 </div>
-                <p>{auth.fName}</p>
+                <p>{auth.username}</p>
             </div>
 
             <ul className={toggleMenu?"dashboard-nav-ul":null}>

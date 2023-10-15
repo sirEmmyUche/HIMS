@@ -38,8 +38,29 @@ export async function signUpUser(credentials){
         }
         return data
     }catch(err){
-        console.log(err)
+        return err
     }
+}
+
+export async function verifyCookiesToken(credentials){
+    try{
+        const url = "https://housing-84si.onrender.com/verifyToken"
+        const res = await fetch(url, {
+            method: "get",
+            headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${credentials}`,
+              },
+        })
+        const data = await res.json();
+        if(!res.ok){
+            throw{
+                message:data.message,
+                status:res.status
+            }
+        }
+        return data;
+    }catch(err){console.error(err)}
 }
 
 

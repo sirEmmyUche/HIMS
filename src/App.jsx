@@ -44,15 +44,6 @@ export default App
 
 
 
-// Pages to build for this project
-
-// >login page
-// >signup page
-// >profile page 
-// this profile page will have the following; 
-// dashboard (name of user, verify house, register house, settings)
-//footer page
-
 
 
 

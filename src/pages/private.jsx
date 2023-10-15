@@ -1,58 +1,63 @@
 import { useEffect, useState } from "react";
-import { useLocation, Navigate, Outlet,Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import Cookies from 'js-cookie';
 import useAuth from "../hooks/useAuth";
+import { verifyCookiesToken } from "../api";
 
-const RequireAuth = ({ allowedRoles }) => {
-    const { auth, setAuth } = useAuth();
-    const [errMsg, setErrMsg] = useState("")
-    //const location = useLocation();
-    useEffect(()=>{
-        const verifyToken = async()=>{
-            try{
-                const getToken = JSON.parse(localStorage.getItem("accessToken"));
-                if(!getToken){
-                    setErrMsg("Token not Found Please SignUp or LogIn if already have an account")
-                }
-                const verifyUser = await fetch("https://housing-84si.onrender.com/verifyToken", {
-                    method:"get",
-                    headers:{
-                        Accept:"application/json",
-                        Authorization: `Bearer ${getToken}`,
-                    },
-                })
-                if(verifyUser.status === 200){
-                    const result = await verifyUser.json();
-                    // console.log(result)
-                    let username = result.username;
-                    let userId = result.userId
-                    let fName = username.charAt(0).toUpperCase() + username.slice(1).toLowerCase();
-                    console.log(fName);
-                    setAuth({fName, userId})
-                }else{
-                    setErrMsg("Token verification failed")
-                    //console.log("Token verification failed");
-                }
-            }catch(err){
-                //console.log(err)
-                let message = verifyUser.message;
-                setErrMsg(message)
-            }
+
+const RequireAuth = () => {
+  const { auth, setAuth } = useAuth();
+  const [errMsg, setErrMsg] = useState("");
+  const [loading, setIsLoading] = useState(false)
+  
+  useEffect(() => {
+    const verifyToken = async () => {
+      try {
+        const token = Cookies.get('token');
+        if (!token || token === undefined){ 
+          const searchLocalStoreToken = JSON.parse(localStorage.getItem("token"));
+          if(!searchLocalStoreToken ||searchLocalStoreToken===undefined){
+            setErrMsg("Unauthorized User, Please Sign up.");
+            setIsLoading(false);
+          return;
+          }
+          if(searchLocalStoreToken){
+            setIsLoading(true);
+            const verifyUser = await verifyCookiesToken(searchLocalStoreToken);
+            let fName = verifyUser.username;
+            let userId = verifyUser.userId;
+            let username = fName.charAt(0).toUpperCase() + fName.slice(1).toLowerCase();
+            setAuth({ username, userId });
+            return;
+          }
         }
-        verifyToken()
-      }, [])
+        if (token) {
+          setIsLoading(true);
+          const userToken = await verifyCookiesToken(token);
+          let username = userToken.username;
+          let userId = userToken.userId;
+          setAuth({username, userId });
+        }
+      } catch (err) {
+        console.log(err);
+        setErrMsg(err.message);
+      }
+    };
 
-      return (
-        auth.fname || auth.userId ? (
-          <Outlet />
-        ) : (
-          <div>
-            <h1>{errMsg}</h1>
-            <p><Link to={"/Signup"}> Go to SignUp Page</Link></p>
-            {/* <Navigate to="/Signup" state={{ from: location }} replace /> */}
-          </div>
-        )
-      );
-      
+    verifyToken(); 
+
+  }, [setAuth]);
+
+  return (
+     auth.username ||auth.userId ? (
+      <Outlet />
+    ) : (
+      <div>
+        <h1>{errMsg}</h1>
+        <p><Link to={"/Signup"}>{loading? "loading...":"Go to Sign-Up Page"}</Link></p>
+      </div>
+    )
+  );
 }
 
 export default RequireAuth;

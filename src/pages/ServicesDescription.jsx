@@ -9,9 +9,8 @@ function ServicesDescription(){
     useEffect(()=>{
         async function detailsData(){
             const data = await fetch(`https://housing-84si.onrender.com/api/service/${params.id}`)
-            const res = await data.json()
-            console.log(res)
-            setServiceDetails(res) 
+            const res = await data.json();
+            setServiceDetails(res);
         }
         detailsData()
     },[params.id])

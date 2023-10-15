@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef, useCallback} from "react"
-import useAuth from '../hooks/useAuth';
+import { useState, useRef,} from "react"
 import { Link, useNavigate, useLocation, } from 'react-router-dom';
 import { loginUser } from "../api.js"
 import "../styles/login.css"
@@ -7,7 +6,6 @@ import "../styles/login.css"
 
  function Login(){
   const useref = useRef(null)
-  const {auth, setAuth} = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation(); 
@@ -15,18 +13,7 @@ import "../styles/login.css"
   const from = location.state?.from || "/dashboard";
   const [loginFormData, setLoginFormData] = useState({email:"",password:""}) 
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleGoogleLogin = useCallback(async()=>{
-    try{
-       // window.location.href = 'https://housing-84si.onrender.com/auth/google';
-    const response = await fetch('https://housing-84si.onrender.com/auth/google',{
-      method:"post",
-      headers:{"content-type":"application/json"},
-    });
-    const data = await response.json();
-   // console.log(data)
-    }catch(err){console.log(err)}
-  })
+  const [errMsg, setErrMsg] = useState("");
 
 
    const postLoginDataDetails = async ()=>{
@@ -36,15 +23,14 @@ import "../styles/login.css"
       let status = data.status;
       let message = data.message;
       let token = data.token;
-      localStorage.setItem("accessToken", JSON.stringify(token));
 
       if(status != 200){
-        setAuth({message})
+        setErrMsg({message})
         setIsSubmitting(false)
       }
       if(token){
-        setAuth({token, message,})
-      navigate(from, { replace: true });
+        localStorage.setItem("token", JSON.stringify(token));
+        navigate(from, { replace: true });
       }
     }catch(err){
       console.log(err)
@@ -67,7 +53,7 @@ import "../styles/login.css"
   return (
     <div id="login-wrapper">
         <div className="form-wrapper">
-        <p className={auth.message?"error-msg":null}>{auth.message}</p>
+        <p className={errMsg.message?"error-msg":null}>{errMsg.message}</p>
           <h3>Sign In</h3>
           <form className="form-data" onSubmit={handleSubmitForm}>
             <label>
@@ -101,7 +87,7 @@ import "../styles/login.css"
           <div className="sigin-with-google-and-create-account-wrapper">
             <div className="singin-with-google-wrapper">
               <div className="google-icon-box"><img src="/images/google-icon.jfif"/></div>
-              <p onClick={handleGoogleLogin}>Sign In with Google</p>
+              <a href="https://housing-84si.onrender.com/auth/google">Sign In with Google</a>
               </div>
             <div className="create-an-account">
              <Link to={"/Signup"}>Create an Account</Link>
