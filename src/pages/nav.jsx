@@ -22,9 +22,9 @@ function Nav() {
             <li > 
               <Link to={"/Services"}>Service</Link>
             </li>
-                <li >
+                {/* <li >
                   <Link to={"/Login"}>Login</Link>
-                </li>
+                </li> */}
             <li>
               <Link to={"/"}>About</Link>
             </li>

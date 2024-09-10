@@ -1,6 +1,9 @@
+const baseUrl = 'https://housing-84si.onrender.com'
+// const baseUrl = 'http://localhost:3000'
+
 export async function loginUser(credentials){
     try{
-        const url = "https://housing-84si.onrender.com/login"; 
+        const url = `${baseUrl}/login`; 
         const res =await fetch(url,
             {
                 method:"post", 
@@ -22,7 +25,7 @@ export async function loginUser(credentials){
 
 export async function signUpUser(credentials){
     try{
-        const url = "https://housing-84si.onrender.com/signup";
+        const url = `${baseUrl}/signup`;
         const res =await fetch(url,
             {
                 method:"post", 
@@ -44,7 +47,7 @@ export async function signUpUser(credentials){
 
 export async function verifyCookiesToken(credentials){
     try{
-        const url = "https://housing-84si.onrender.com/verifyToken"
+        const url = `${baseUrl}/verifyToken`
         const res = await fetch(url, {
             method: "get",
             headers: {
@@ -66,7 +69,7 @@ export async function verifyCookiesToken(credentials){
 
 export async function verifyHouse(credentials){
     try{
-        const url = "https://housing-84si.onrender.com/verifyHouse";
+        const url = `${baseUrl}/verifyHouse`;
         const res =await fetch(url,
             {
                 method:"post", 

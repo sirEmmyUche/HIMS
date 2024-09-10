@@ -1,5 +1,5 @@
 #verify-house{
-    width: calc(100vw - 15vw);
+    /* width: calc(100vw - 15vw); */
     min-height: 100vh;
     background-image: url("/images/verify-h-bg (3).jpg");
     background-size: 100% 100%;

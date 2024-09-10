@@ -92,10 +92,10 @@ function Signup() {
               </button></div>
           </form>
           <div className="sigin-with-google-and-create-account-wrapper">
-            <div className="singin-with-google-wrapper">
+            {/* <div className="singin-with-google-wrapper">
               <div className="google-icon-box"><img src="/images/google-icon.jfif"/></div>
               <a href="https://housing-84si.onrender.com/auth/google">Sign Up with Google</a>
-              </div>
+              </div> */}
             <div className="create-an-account">
              <Link to={"/Login"}>Have an account? Sign in</Link>
               </div>
